@@ -1,0 +1,6 @@
+This is some data that we are writing to a file in Go.
+I am a boy
+hello Ji
+How are you
+welcome
+bye
