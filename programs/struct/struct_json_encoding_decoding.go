@@ -54,3 +54,25 @@ func main() {
 	// Display the decoded User struct
 	fmt.Printf("Decoded User u1:\nID: %d\nUserName: %s\nEmail: %s\n", decodedUser.ID, decodedUser.UserName, decodedUser.Email)
 }
+
+/*
+Output:
+
+saura@DESKTOP-GC3SDTN MINGW64 ~/OneDrive/Desktop/GO (main)
+$ go run ./programs/struct/struct_json_encoding_decoding.go
+Data type of 'jsonData': []uint8
+
+Original content of 'jsonData':  [123 34 73 68 34 58 49 48 49 44 34 85 115 101 114 78 97 109 101 34 58 34 82 97 116 97 110 34 44 34 69 109 97 105 108 34 58 34 114 97 116 97 110 116 97 116 97 64 103 109 97 105 108 46 99 111 109 34 125]
+
+Encoded JSON data:
+{"ID":101,"UserName":"Ratan","Email":"ratantata@gmail.com"}
+
+User u1 Information:  {101 Ratan ratantata@gmail.com}
+
+##################################################################
+
+Decoded User u1:
+ID: 101
+UserName: Ratan
+Email: ratantata@gmail.com
+*/
