@@ -1,12 +1,12 @@
 # `Using Data Within a Context`
 
-One benefit of using context.Context in a program is the ability to access data stored inside a context. By adding data to a context and passing the context from function to function, each layer of a program can add additional information about what’s happening. For example, the first function may add a username to the context. The next function may add the file path to the content the user is trying to access. Finally, a third function could then read the file from the system’s disk and log whether it was loaded successfully or not as well as which user tried to load it.
+One benefit of using `context.Context` in a program is the ability to access data stored inside a context. By adding data to a context and passing the context from function to function, each layer of a program can add additional information about what’s happening. For example, the first function may add a username to the context. The next function may add the file path to the content the user is trying to access. Finally, a third function could then read the file from the system’s disk and log whether it was loaded successfully or not as well as which user tried to load it.
 
 
 To add a new value to a context, use the **`context.WithValue`** function in the context package. The function accepts three parameters: 1. the parent context.Context, 2. the key, and 3. the value. 
 The `context.WithValue` function allows you to add a new key-value pair to a `context.Context` in Go. Here's a breakdown of its parameters and functionalities:
 
-**Para`meters:**
+**`Parameters`:**
 
 1. **`parent context.Context`:** This is the existing context to which you want to add the new value.
 2. **`key`:** This is an identifier for the value being added. It can be any data type.

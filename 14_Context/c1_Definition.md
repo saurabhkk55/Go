@@ -20,7 +20,7 @@ So, the context package helps functions "know their place" and avoid wasting res
 
 <div style="border: 10px solid white;"></div>
 
-`Theory 2: Creating a Context`
+`Theory 2:`
 
 Many functions in Go use the context package to gather additional information about the environment they’re being executed in, and will typically provide that context to the functions they also call. By using the context.Context interface in the context package and passing it from function to function, programs can convey that information from the beginning function of a program, such as main, all the way to the deepest function call in the program. The Context function of an http.Request, for example, will provide a context.Context that includes information about the client making the request and will end if the client disconnects before the request is finished. By passing this context.Context value into a function that then makes a call to the QueryContext function of a sql.DB, the database query will also be stopped if it’s still running when the client disconnects.
 

@@ -58,8 +58,8 @@ Here, we have two goroutines: one for the `printNumbers` function and one for th
 2. `generateNumbers` Function:
    The `generateNumbers` function writes numbers to the channel. It will block when it tries to write to the channel, and the channel is full. Since the channel is unbuffered in your code, it can only accept one value at a time. Therefore, if the `printNumbers` goroutine is slow in reading from the channel, the `generateNumbers` function will block when trying to write the next number.
 
-Example:
-If the `printNumbers` goroutine is slow to read from the channel, and the `generateNumbers` function is generating numbers faster than they are being read, the `generateNumbers` function will be blocked until the `printNumbers` goroutine reads from the channel to free up space for another value.
+	Example:
+	If the `printNumbers` goroutine is slow to read from the channel, and the `generateNumbers` function is generating numbers faster than they are being read, the `generateNumbers` function will be blocked until the `printNumbers` goroutine reads from the channel to free up space for another value.
 
 In your code, you've used a `sync.WaitGroup` to ensure that both the `printNumbers` and `generateNumbers` functions complete before closing the channel and exiting the program. This coordination is important to avoid premature termination of the program and potential data race conditions. Once both functions have completed their work (as indicated by `wg.Done()` calls), the `close(numberChan)` statement is executed, signaling to the `printNumbers` goroutine that no more data will be sent through the channel.
 
