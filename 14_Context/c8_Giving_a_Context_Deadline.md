@@ -196,7 +196,7 @@ func doAnother(ctx context.Context, printCh <-chan int) {
 ```
 
 ### `Code explanation`:
-**`In this code, you will notice `cancelCtx` is called twice:`**
+**`In this code, you will notice cancelCtx is called twice:`**
 - The first call to `cancelCtx() function` is within the defer statement of the doSomething function. This ensures that even if the function exits early due to an error or other reason, the context will be canceled and resources cleaned up.
 
 - The purpose of this defer statement is to ensure that `cancelCtx()` is called even if there are return statements or panics in the function 'doSomething' . This is a common practice to ensure proper cleanup and resource release.
