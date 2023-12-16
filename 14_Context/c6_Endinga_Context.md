@@ -16,42 +16,44 @@ But, if your functions use a `context.Context`, they are smart enough to know wh
 In simpler terms, using a context helps your program be more responsive and not waste time on tasks that aren't needed, just like chefs stopping cooking when a customer leaves the restaurant.
 
 ## `Theory-2: Determining if a Context is Done`
-No matter the cause of a context ending, determining if a context is done happens the same way. The context.Context type provides a method called Done that can be checked to see whether a context has ended or not. This method returns a channel that is closed when the context is done, and any functions watching for it to be closed will know they should consider their execution context completed and should stop any processing related to the context. The Done method works because no values are ever written to its channel, and when a channel is closed that channel will start to return nil values for every read attempt. By periodically checking whether the Done channel has closed and doing processing work in-between, you’re able to implement a function that can do work but also knows if it should stop processing early. Combining this processing work, the periodic check of the Done channel, and the select statement goes even further by allowing you to send data to or receive data from other channels simultaneously.
+No matter the cause of a context ending, determining if a context is done happens the same way. The `context.Context` type provides a method called `Done` that can be checked to see whether a context has ended or not. This method returns a channel that is closed when the context is done, and any functions watching for it to be closed will know they should consider their execution context completed and should stop any processing related to the context. The Done method works because no values are ever written to its channel, and when a channel is closed that channel will start to return nil values for every read attempt. By periodically checking whether the Done channel has closed and doing processing work in-between, you’re able to implement a function that can do work but also knows if it should stop processing early. Combining this processing work, the periodic check of the Done channel, and the select statement goes even further by allowing you to send data to or receive data from other channels simultaneously.
 
-The select statement in Go is used to allow a program to try reading from or writing to a number of channels all at the same time. Only one channel operation happens per select statement, but when performed in a loop, the program can do a number of channel operations when one becomes available. A select statement is created by using the keyword select, followed by a code block enclosed in curly braces ({}), with one or more case statements inside the code block. Each case statement can be either a channel read or write operation, and the select statement will block until one of the case statements can be executed. Suppose you don’t want the select statement to block, though. In that case, you can also add a default statement that will be executed immediately if none of the other case statements can be executed. It looks and works similarly to a switch statement, but for channels.
+The select statement in Go is used to allow a program to try reading from or writing to a number of channels all at the same time. Only one channel operation happens per select statement, but when performed in a loop, the program can do a number of channel operations when one becomes available. A select statement is created by using the keyword `select`, followed by a code block enclosed in curly braces ({}), with one or more case statements inside the code block. Each case statement can be either a channel read or write operation, and the select statement will block until one of the case statements can be executed. Suppose you don’t want the select statement to block, though. In that case, you can also add a default statement that will be executed immediately if none of the other case statements can be executed. It looks and works similarly to a switch statement, but for channels.
 
 ## `Explanation-2:`
 Certainly! Let's break down the information point by point:
 
-1. **Determining if a Context is Done:**
+1. **`Determining if a Context is Done`:**
    - In Go programming language, the `context.Context` type provides a method called `Done`.
    - This method returns a channel that is closed when the context is done.
    - When the channel is closed, any functions watching it should interpret it as a signal to consider their execution context completed and stop any related processing.
    - The `Done` method is useful because no values are written to its channel. When a channel is closed, it starts returning nil values for every read attempt.
+   - OR, The Done channel only returns nil when it's closed, which means it's done sending any values.
+   - When a Done channel is closed in Go, it indicates that no more values will be sent on it. Reading from a closed channel will immediately return a nil value. It's important to note that only the sender (the goroutine or part of the code that is sending values to the channel) should close a channel. The receiver (the part of the code that is reading from the channel) should not close it. Closing the channel by the receiver could lead to unintended consequences.
 
-2. **Working with the Done Channel:**
+2. **`Working with the Done Channel`:**
    - By periodically checking whether the Done channel has closed, a program can determine if the associated context has ended.
    - The periodic checks enable the implementation of functions that can perform work but also know when to stop processing early based on the context's status.
    - This mechanism is crucial for handling scenarios where a context needs to be canceled or timed out.
 
-3. **Select Statement in Go:**
+3. **`Select Statement in Go`:**
    - The `select` statement in Go allows a program to interact with multiple channels concurrently.
    - It is used to try reading from or writing to several channels simultaneously.
    - The `select` statement is placed within a loop to perform multiple channel operations as they become available.
    - It consists of a code block enclosed in curly braces (`{}`) and contains one or more `case` statements representing channel operations.
    - Each `case` statement can be either a channel read or write operation.
 
-4. **Blocking Behavior of Select:**
+4. **`Blocking Behavior of Select`:**
    - The `select` statement blocks until one of its `case` statements can be executed.
    - If none of the `case` statements can be executed immediately, the `select` statement can include a `default` statement that is executed immediately.
    - This behavior is similar to a `switch` statement, but it is specifically designed for working with channels.
 
-5. **Simultaneous Channel Operations:**
+5. **`Simultaneous Channel Operations`:**
    - The `select` statement allows a program to perform channel operations concurrently.
    - When one of the channels becomes available, the associated `case` statement is executed.
    - This enables efficient handling of multiple communication channels, such as in the context of Go routines and channels.
 
-6. **Additional Information:**
+6. **`Additional Information`:**
    - The combination of processing work, periodic checks on the `Done` channel, and the `select` statement allows for a flexible and responsive approach in handling contexts and channels.
    - Go's concurrency model, including goroutines and channels, facilitates the development of concurrent and parallel programs.
 
@@ -96,7 +98,7 @@ Certainly! Let's break down the provided code example and explanation point by p
       }
    }
    ```
-   - Utilizes an infinite `for` loop with a `select` statement to continuously monitor two cases:
+   - Utilizes an `infinite for loop` with a `select` statement to continuously monitor two cases:
       - **Case 1:** If the context (`ctx`) is done (closed), the loop stops processing results and returns.
       - **Case 2:** If there is a new result available in the `resultsCh` channel, it processes the result.
 
