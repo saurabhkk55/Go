@@ -166,7 +166,7 @@ func doSomething(ctx context.Context) {
 	// Cancel the child context explicitly
 	cancelCtx()
 
-	// Simulate a short delay
+	// Wait for some time, allowing goroutine to perform its task before the main function exits.
 	time.Sleep(100 * time.Millisecond)
 
 	// Print a message indicating that doSomething has finished
@@ -193,6 +193,15 @@ func doAnother(ctx context.Context, printCh <-chan int) {
 		}
 	}
 }
+```
+### `Output`:
+
+```go
+doAnother: 1
+doAnother: 2
+doAnother err: context deadline exceeded
+doAnother: finished
+doSomething: finished
 ```
 
 ### `Code explanation`:
