@@ -1,0 +1,30 @@
+saura@DESKTOP-GC3SDTN MINGW64 ~/OneDrive/Desktop/GO (main)
+	$ go mod init github.com/saurabhkk55/Go
+	go: creating new go.mod: module github.com/saurabhkk55/Go
+	go: to add module requirements and sums:
+			go mod tidy
+
+saura@DESKTOP-GC3SDTN MINGW64 ~/OneDrive/Desktop/GO (main)
+	$ go get go.mongodb.org/mongo-driver/mongo
+	go: downloading go.mongodb.org/mongo-driver v1.13.1
+	go: downloading github.com/youmark/pkcs8 v0.0.0-20181117223130-1be2e3e5546d
+	go: downloading github.com/golang/snappy v0.0.1
+	go: downloading github.com/klauspost/compress v1.13.6
+	go: downloading github.com/montanaflynn/stats v0.0.0-20171201202039-1bf9dbcd8cbe
+	go: downloading github.com/xdg-go/scram v1.1.2
+	go: downloading github.com/xdg-go/stringprep v1.0.4
+	go: downloading golang.org/x/crypto v0.0.0-20220622213112-05595931fe9d
+	go: downloading golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4
+	go: downloading github.com/xdg-go/pbkdf2 v1.0.0
+	go: downloading golang.org/x/text v0.7.0
+	go: added github.com/golang/snappy v0.0.1
+	go: added github.com/klauspost/compress v1.13.6
+	go: added github.com/montanaflynn/stats v0.0.0-20171201202039-1bf9dbcd8cbe
+	go: added github.com/xdg-go/pbkdf2 v1.0.0
+	go: added github.com/xdg-go/scram v1.1.2
+	go: added github.com/xdg-go/stringprep v1.0.4
+	go: added github.com/youmark/pkcs8 v0.0.0-20181117223130-1be2e3e5546d
+	go: added go.mongodb.org/mongo-driver v1.13.1
+	go: added golang.org/x/crypto v0.0.0-20220622213112-05595931fe9d
+	go: added golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4
+	go: added golang.org/x/text v0.7.0
